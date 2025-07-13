@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Companion Matcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Companion Matcher</h1>
+
+    <!-- 🔵 Create Profile Section -->
+    <form id="userForm">
+      <h2>Create Profile</h2>
+
+      <label for="name">Name:</label>
+      <input id="name" required />
+
+      <label for="age">Age:</label>
+      <input id="age" type="number" required />
+
+      <label for="interests">Interests (comma separated):</label>
+      <input id="interests" required />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="response"></p>
+
+    <!-- 🔍 Match Finder Section -->
+    <div class="matches">
+      <h2>Find Matches</h2>
+      <input id="matchName" placeholder="Enter your name" />
+      <button onclick="getMatches()">Get Matches</button>
+      <ul id="matchList"></ul>
+    </div>
+  </div>
+
+  <!-- 💻 JavaScript -->
+  <script>
+    // Submit Profile
+    document.getElementById('userForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const age = +document.getElementById('age').value;
+      const interests = document.getElementById('interests').value
+        .split(',')
+        .map(i => i.trim());
+
+      const res = await fetch('/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, age, interests })
+      });
+
+      const data = await res.json();
+      document.getElementById('response').innerText = data.message;
+    });
+
+    // Get Matches
+    async function getMatches() {
+      const username = document.getElementById('matchName').value;
+
+      const res = await fetch(`/matches/${username}`);
+      const data = await res.json();
+
+      const list = document.getElementById('matchList');
+      list.innerHTML = '';
+
+      if (Array.isArray(data)) {
+        data.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} — ${user.interests.join(', ')}`;
+          list.appendChild(li);
+        });
+      } else {
+        list.innerHTML = `<li>${data.message}</li>`;
+      }
+    }
+  </script>
+</body>
+</html>
