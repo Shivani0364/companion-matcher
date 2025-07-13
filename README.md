@@ -1,6 +1,6 @@
 # Companion Matcher 👥
-
-A simple full-stack mini project that allows users to create profiles and find companions who share common interests.
+**Companion Matcher** is a simple and intuitive full-stack web application built using **Node.js** and **Express.js** on the backend and **HTML/CSS/JavaScript** on the frontend.  
+The goal of the project is to allow users to create a profile and then find other users who share similar interests — a basic prototype of a companion/friend suggestion system.
 
 ## 🛠 Tech Stack
 - **Frontend:** HTML, CSS, JavaScript
