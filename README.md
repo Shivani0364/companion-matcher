@@ -15,14 +15,13 @@ A simple full-stack mini project that allows users to create profiles and find c
 - Prevents duplicate profile entries
 - Clean and centered user interface
 
-## 📷 Screenshots
+## 🧠 Why This Project Matters
 
-(Add screenshots here if you want — optional)
+This project helps understand:
+- How a server handles incoming POST and GET requests
+- How the frontend and backend interact using `fetch()`
+- How to structure and organize a full-stack mini app
+- How to process and compare data in JavaScript
 
-## 📦 How to Run
 
-```bash
-git clone https://github.com/yourusername/companion-matcher.git
-cd companion-matcher
-npm install
-node index.js
+Support: Reach out to yadavshivani7726@gmail.com for onboarding help.
